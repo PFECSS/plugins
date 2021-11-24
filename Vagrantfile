@@ -3,4 +3,4 @@ Vagrant.configure('2') do |config|
       v.vm.box="eseo/docker-root"
       v.vm.hostname="docker-root"
     end
-  end
+end
