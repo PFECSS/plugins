@@ -2,5 +2,6 @@ Vagrant.configure('2') do |c|
     c.vm.define "docker-root" do |m|
       m.vm.box="eseo/docker-root"
       m.vm.hostname="docker-root"
+      m.vm.network :privage_network, ip: "192.168.56.123"
     end
 end
