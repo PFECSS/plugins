@@ -7,11 +7,11 @@
       "boot_command": [
         "<enter><wait40>",
         "archinstall<enter><wait15>",
-        "26<enter><wait>",
-        "10<enter><wait>",
-        "1<enter><wait>",
-        "1<enter><wait>",
-        "<enter><wait>",
+        "26<enter><wait5>",
+        "10<enter><wait5>",
+        "1<enter><wait5>",
+        "1<enter><wait5>",
+        "<enter><wait5>",
         "arch<enter><wait>",
         "{{user `ssh_password`}}<enter><wait>",
         "{{user `ssh_password`}}<enter><wait>",
@@ -87,7 +87,7 @@
   
   "variables": {
     "cpus": "1",
-    "disk_size": "1024",
+    "disk_size": "3072",
     "iso_checksum": "0fd50c3af25f384d141fadd4f0bfc9e90a10b14fce3e85c8ac6c8b74719b9186",
     "iso_checksum_type": "sha256",
     "iso_download_url": "https://mirror.archlinux.ikoula.com/iso/2021.10.01/archlinux-2021.10.01-x86_64.iso",
