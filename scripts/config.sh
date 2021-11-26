@@ -1,5 +1,10 @@
 #!/bin/bash
 {
+    pacman -S -q --noconfirm \
+        wget \
+        curl \
+        git \
+
     echo "[+] - Creating vagrant specific configuration"
     echo '%wheel ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers
     echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/vagrant
@@ -12,7 +17,7 @@
     echo "[*] - Creating eseoquali user"
     useradd -m eseoquali
     echo "network" | passwd --stdin eseoquali
-    #echo -e "eseoquali:network" | chpasswd
+    echo -e "eseoquali:network" | chpasswd
     echo 'eseoquali ALL=(ALL) ALL' >> /etc/sudoers.d/eseoquali
     usermod -aG wheel,video,audio,disk,lp,storage eseoquali
     mkdir -p /home/eseoquali

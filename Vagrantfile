@@ -1,7 +1,7 @@
 Vagrant.configure('2') do |c|
-    c.vm.define "docker-root" do |m|
-      m.vm.box="eseo/docker-root"
-      m.vm.hostname="docker-root"
+    c.vm.define "webapps" do |m|
+      m.vm.box="eseo/webapps"
+      m.vm.hostname="webapps"
       m.vm.network :private_network, ip: "192.168.56.123"
     end
 end
