@@ -1,2 +1,0 @@
-# plugins
-Configurations Packer
