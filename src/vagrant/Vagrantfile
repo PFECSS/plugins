@@ -1,0 +1,65 @@
+# -*- mode: ruby -*-
+# vim: set ft=ruby : tw=79 :
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define "dvwa" do |m|
+	m.vm.hostname = "dvwa"
+    m.vm.box = "generic/arch"
+    m.vm.network :private_network, ip: "192.168.56.71"
+    m.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--name", "dvwa"]
+      v.customize ["modifyvm", :id, "--cpus", "1"]
+      v.customize ["modifyvm", :id, "--memory", 512]
+    end
+    m.vm.provision "shell", path: "scripts/config_arch.sh"
+    m.vm.provision "shell", path: "scripts/install_dvwa.sh"
+  end
+
+# Machine attaquante : Kali Linux
+#  config.vm.define "eseoquali" do |m|
+#    m.vm.hostname = "hackeseo"
+#    m.vm.box = "Chapizze/ESEOquali"
+#    m.vm.network :private_network, ip: "192.168.56.72"
+#    m.vm.provider "virtualbox" do |v|
+#      v.customize ["modifyvm", :id, "--name", "hackeseo"]
+#      v.customize ["modifyvm", :id, "--cpus", "1"]
+#      v.customize ["modifyvm", :id, "--memory", 1024]
+#      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+#      v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+#    end  
+#  end
+
+  config.vm.define "firewall" do |m|
+    m.vm.hostname = "firewall"
+    m.vm.box = "generic/arch"
+    m.vm.network :public_network
+    m.vm.network :private_network, ip: "192.168.56.73"
+    m.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--name", "firewall"]
+      v.customize ["modifyvm", :id, "--cpus", "1"]
+      v.customize ["modifyvm", :id, "--memory", 512]
+    end  
+    m.vm.provision "shell", path: "scripts/config_arch.sh"
+    m.vm.provision "shell", path: "scripts/install_login.sh"
+    m.vm.provision "shell", path: "scripts/config_ufw.sh"
+  end
+
+
+  # Machine vulnérable Win7
+  # CHECK WINRM
+  config.ssh.insert_key = false
+  config.vm.define "win7" do |m|
+    m.vm.hostname = "win7"
+    m.vm.box = "Chapizze/Windows7"
+    # L'ip de la machine sera différente car non configurée par ssh
+    # Il faudra lancer nmap
+    m.vm.network :private_network, ip: "192.168.56.99"
+    m.vm.provider "virtualbox" do |v|
+      v.customize ["modifyvm", :id, "--name", "win7"]
+      v.customize ["modifyvm", :id, "--cpus", "1"]
+      v.customize ["modifyvm", :id, "--memory", 1024]
+    end  
+  end
+
+end

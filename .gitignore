@@ -1,0 +1,6 @@
+.vagrant
+src/packer/.vagrant
+src/packer/output
+src/packer/data
+src/packer/packer_cache
+src/vagrant/.vagrant
